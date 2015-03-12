@@ -1,0 +1,5 @@
+../data/private/*
+terraform.tfvars
+terraform.tfstate*
+
+../data/revoked_keys/*

@@ -1,0 +1,32 @@
+- hosts: all
+  remote_user: ubuntu
+  sudo: yes
+  vars_prompt:
+   - name: "user_password"
+     prompt: "Enter a password for the user"
+     private: yes
+     encrypt: "md5_crypt" #need to have python-passlib installed in local machine before we can use it
+     confirm: no
+     salt_size: 7
+  roles:
+  - { role: docker }
+  handlers:
+    - name: restart ssh
+      service:
+         name=ssh
+         state=restarted
+  tasks:
+  - name: Allow SSH password authentication
+    lineinfile:
+        dest=/etc/ssh/sshd_config
+       regexp="^PasswordAuthentication"
+       line="PasswordAuthentication yes"
+       state=present
+    notify:
+       - restart ssh
+
+
+- hosts: trainer
+  roles:
+  - { role: docker }
+

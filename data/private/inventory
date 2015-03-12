@@ -1,0 +1,3 @@
+[docker]
+52.16.25.36 instance_type="t2.small" private_ip="172.30.9.158" public_ip="52.16.25.36" type="docker"
+52.16.121.89 instance_type="t2.small" private_ip="172.30.9.39" public_ip="52.16.121.89" type="docker"
